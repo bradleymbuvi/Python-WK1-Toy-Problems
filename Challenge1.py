@@ -9,17 +9,23 @@ def solution(A):
         elif A[i] < target_bricks:
             if i < n - 1:
                 diff = target_bricks - A[i]
-                A[i] += diff
-                A[i+1] -= diff
-                moves += diff
+                if diff <= A[i+1]:
+                    A[i] += diff
+                    A[i+1] -= diff
+                    moves += diff
+                else:
+                    return -1
             else:
                 return -1
         else:  # A[i] > target_bricks
             if i > 0:
                 diff = A[i] - target_bricks
-                A[i] -= diff
-                A[i-1] += diff
-                moves += diff
+                if diff <= A[i-1]:
+                    A[i] -= diff
+                    A[i-1] += diff
+                    moves += diff
+                else:
+                    return -1
             else:
                 return -1
                 
